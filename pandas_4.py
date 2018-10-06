@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 
-
 def get_search_results_df(keyword):
  columns = ['rank','title','url', 'affiliate_url']
  df = pd.DataFrame(columns=columns)

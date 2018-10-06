@@ -21,7 +21,7 @@ def get_serach_results_df(keyword):
 def query_string_remove(url):
   return url[:url.find('&')]
 
-keyword = "転職"
+keyword = ""
 search_results_df = get_serach_results_df(keyword)
 search_results_df.head(10)
 print(search_results_df.head(10))
