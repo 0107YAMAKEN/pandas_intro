@@ -12,7 +12,7 @@ def get_search_results_df(keyword):
  for tag in tags:
    title = tag.text
    url = query_string_remove(tag.select("a")[0].get("href").replace("/url?q=",""))
-   affiliate_url = ""
+   affiliate_url = get_a8_links(url)
    se = pd.Series([rank, title, url, affiliate_url], columns)
    df = df.append(se, ignore_index=True)
    rank += 1
@@ -23,11 +23,19 @@ def query_string_remove(url):
 
 def get_a8_links(url):
  html_doc = requests.get(url).text
- soup = BeautifulSoup(html_doc, 'html.parser') # BeautifulSoupの初期化
+ soup = BeautifulSoup(html_doc, 'html.parser')
  tags = soup.select("a")
  urls = ""
  for tag in tags:
+  try:
    url = tag.get("href")
    if url.find(a8_link) > -1 :
      urls += url + "\n"
+  except Exception as e:
+      continue
  return urls
+ 
+keyword = "仕事 行きたくない"
+search_results_df = get_search_results_df(keyword)
+search_results_df.head(10)
+print(search_results_df.head(10))

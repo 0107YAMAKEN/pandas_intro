@@ -21,7 +21,7 @@ def get_serach_results_df(keyword):
 def query_string_remove(url):
   return url[:url.find('&')]
 
-keyword = ""
+keyword = "転職"
 search_results_df = get_serach_results_df(keyword)
 search_results_df.head(10)
 print(search_results_df.head(10))
@@ -39,4 +39,3 @@ def get_a8_links(url):
     
 url = "https://dividable.net/programming-school/recommended-programming-school"
 print(get_a8_links(url))
-      
